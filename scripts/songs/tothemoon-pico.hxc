@@ -238,7 +238,7 @@ class ToTheMoonPicoMixSong extends Song
     super.onGameOver(e);
 
     bg = new FunkinSprite();
-    bg.makeSolidColor(20000, 25000, 0xFFFFFFFF);
+    bg.makeSolidColor(30000, 25000, 0xFFFFFFFF);
     bg.zIndex = 1400;
     
     video1 = new FunkinVideoSprite();
@@ -246,7 +246,11 @@ class ToTheMoonPicoMixSong extends Song
     video1.bitmap.volumeAdjust = 100;
     video1.load(Paths.videos('gameoverpicodarnell'));
     video1.scrollFactor.set(0, 0);
+    video1.bitmap.onEndReached.add(GameOverSubState.resetPlaying);
     video1.play();
+
+    
+
     FlxTimer.wait(0.001, ()->{
       video1.bitmap.onFormatSetup.add(function():Void {
         if (video1.bitmap != null && video1.bitmap.bitmapData != null) {
@@ -256,7 +260,10 @@ class ToTheMoonPicoMixSong extends Song
         }
     });
 
-    FlxG.state.subState.add(video1);
+    
+
+    GameOverSubState.instance.add(bg);
+    GameOverSubState.instance.add(video1);
     GameOverSubState.instance.boyfriend.visible = false;
     });
   }
