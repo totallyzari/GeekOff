@@ -34,8 +34,12 @@ class JeeterJuicePicoMixSong extends Song
  function onGameOver(e)
     {
       super.onGameOver(e);
+
+      // PlayState.instance.currentStage.getBoyfriend().visible = false;
+
       PlayState.instance.currentStage.getDad().playAnimation('kill', 24, false, false, true);
       PlayState.instance.currentStage.getGirlfriend().playAnimation('ohwow', 24, false, false, true);
+      PlayState.instance.currentStage.getBoyfriend().playAnimation('die', 24, false, false, true);
     }
 
     public function onUpdate(event:UpdateScriptEvent)
